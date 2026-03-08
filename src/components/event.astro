@@ -1,0 +1,26 @@
+---
+import Card from './ui/card.astro';
+---
+
+<section
+  class="flex flex-col items-center justify-center bg-slate-50 p-7 py-24"
+>
+  <h1 class="font-Lora mb-12 text-5xl md:text-6xl">Intinerario</h1>
+  <article class="flex flex-col gap-12 md:flex-row lg:gap-x-28">
+    <Card
+      title="Ceremonia"
+      place="Parroquia de Cristo Crucificado"
+      time="5:00 PM"
+      img="/img/iglesia.jpg"
+      mapUrl="https://maps.app.goo.gl/AtRWTBdp1SDqFurYA"
+    />
+
+    <Card
+      title="Cena"
+      place="Salon Los Candiles"
+      time="8:00 PM"
+      img="/img/salon.jpg"
+      mapUrl="https://maps.app.goo.gl/8AWUeKm6NJSuabqa6"
+    />
+  </article>
+</section>

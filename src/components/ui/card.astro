@@ -1,0 +1,49 @@
+---
+// src/components/EventCard.astro
+interface Props {
+  title: string;
+  place: string;
+  time: string;
+  img: string;
+  mapUrl: string;
+}
+
+const { title, place, time, img, mapUrl } = Astro.props;
+---
+
+<div
+  class="flex min-h-125 w-full max-w-sm flex-col overflow-hidden rounded-3xl bg-white shadow-xl transition-transform hover:scale-[1.02]"
+>
+  <div class="h-52 w-full shrink-0 overflow-hidden">
+    <img class="h-full w-full object-cover" src={img} alt={title} />
+  </div>
+
+  <div class="flex flex-1 flex-col p-8 text-center">
+    <h5
+      class="font-Montserrat mb-3 text-2xl font-bold tracking-widest text-stone-800 uppercase"
+    >
+      {title}
+    </h5>
+
+    <div class="mx-auto mb-4 h-px w-12 shrink-0 bg-stone-200"></div>
+
+    <div class="mb-8 flex flex-1 flex-col justify-center">
+      <p
+        class="font-Montserrat text-xl leading-tight font-medium text-stone-600"
+      >
+        {place}
+      </p>
+      <p class="font-Montserrat mt-2 text-lg text-stone-400 italic md:text-lg">
+        {time}
+      </p>
+    </div>
+
+    <a
+      href={mapUrl}
+      target="_blank"
+      class="font-Montserrat inline-flex items-center justify-center rounded-full bg-stone-800 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-stone-700"
+    >
+      VER UBICACIÓN
+    </a>
+  </div>
+</div>
