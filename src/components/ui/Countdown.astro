@@ -1,0 +1,85 @@
+---
+interface Props {
+  targetDate: string; // Formato: "2025-12-25T18:00:00"
+}
+
+const { targetDate } = Astro.props;
+---
+
+<div
+  id="countdown-container"
+  data-target={targetDate}
+  class="font-lora flex items-center justify-center gap-4 text-stone-800"
+>
+  <div
+    class="flex min-w-20 flex-col items-center rounded-lg border border-stone-100 bg-white p-4 shadow-sm"
+  >
+    <span id="days" class="text-4xl font-bold">00</span>
+    <span class="text-xs tracking-widest text-stone-400 uppercase">Días</span>
+  </div>
+  <div
+    class="flex min-w-20 flex-col items-center rounded-lg border border-stone-100 bg-white p-4 shadow-sm"
+  >
+    <span id="hours" class="text-4xl font-bold">00</span>
+    <span class="text-xs tracking-widest text-stone-400 uppercase">Horas</span>
+  </div>
+  <div
+    class="flex min-w-20 flex-col items-center rounded-lg border border-stone-100 bg-white p-4 shadow-sm"
+  >
+    <span id="minutes" class="text-4xl font-bold">00</span>
+    <span class="text-xs tracking-widest text-stone-400 uppercase">Min</span>
+  </div>
+  <div
+    class="flex min-w-20 flex-col items-center rounded-lg border border-stone-100 bg-white p-4 shadow-sm"
+  >
+    <span id="seconds" class="text-4xl font-bold text-rose-600">00</span>
+    <span class="text-xs tracking-widest text-stone-400 uppercase">Seg</span>
+  </div>
+</div>
+
+<script>
+  import dayjs from 'dayjs';
+  import duration from 'dayjs/plugin/duration';
+  dayjs.extend(duration);
+
+  const container = document.getElementById('countdown-container');
+  const targetStr = container?.dataset.target;
+
+  if (container && targetStr) {
+    const targetDate = dayjs(targetStr);
+
+    const updateCountdown = () => {
+      const now = dayjs();
+      const diff = targetDate.diff(now);
+
+      if (diff <= 0) {
+        container.innerHTML =
+          "<p class='text-2xl font-bold'>¡Llegó el día! 🎉</p>";
+        return;
+      }
+
+      const timeLeft = dayjs.duration(diff);
+
+      // Actualizamos el DOM de forma eficiente
+      document.getElementById('days')!.innerText = Math.floor(timeLeft.asDays())
+        .toString()
+        .padStart(2, '0');
+      document.getElementById('hours')!.innerText = timeLeft
+        .hours()
+        .toString()
+        .padStart(2, '0');
+      document.getElementById('minutes')!.innerText = timeLeft
+        .minutes()
+        .toString()
+        .padStart(2, '0');
+      document.getElementById('seconds')!.innerText = timeLeft
+        .seconds()
+        .toString()
+        .padStart(2, '0');
+    };
+
+    // Ejecutar cada segundo
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Ejecución inicial
+  }
+</script>
