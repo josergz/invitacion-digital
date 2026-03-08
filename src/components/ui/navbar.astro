@@ -1,0 +1,130 @@
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 z-50 w-full transition-all duration-300"
+>
+  <div class="relative flex items-center justify-center p-6 lg:px-8">
+    <!-- MENU DESKTOP -->
+    <div
+      class="font-montserrat hidden gap-x-12 text-sm font-medium tracking-[0.15em] lg:flex"
+    >
+      <a href="#" class="group relative text-white transition">
+        <span
+          class="after:absolute after:-bottom-1 after:left-1/2 after:h-px after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full"
+        >
+          Product
+        </span>
+      </a>
+
+      <a href="#" class="group relative text-white transition">
+        <span
+          class="after:absolute after:-bottom-1 after:left-1/2 after:h-px after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full"
+        >
+          Features
+        </span>
+      </a>
+
+      <a href="#" class="group relative text-white transition">
+        <span
+          class="after:absolute after:-bottom-1 after:left-1/2 after:h-px after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full"
+        >
+          Marketplace
+        </span>
+      </a>
+
+      <a href="#" class="group relative text-white transition">
+        <span
+          class="after:absolute after:-bottom-1 after:left-1/2 after:h-px after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full"
+        >
+          Company
+        </span>
+      </a>
+    </div>
+
+    <!-- BOTON HAMBURGUESA -->
+    <button
+      id="menuButton"
+      class="absolute right-6 p-2.5 text-white transition hover:scale-110 lg:hidden"
+    >
+      <span class="sr-only">Open main menu</span>
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        class="size-7"
+      >
+        <path
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- MENU MOBILE -->
+  <div
+    id="mobileMenu"
+    class="absolute top-full left-0 hidden w-full justify-center px-6 lg:hidden"
+  >
+    <div
+      class="font-montserrat flex w-full max-w-sm flex-col gap-4 rounded-2xl bg-white p-6 text-center shadow-xl"
+    >
+      <a
+        href="#"
+        class="font-medium text-gray-800 transition hover:text-pink-500"
+        >Product</a
+      >
+      <a
+        href="#"
+        class="font-medium text-gray-800 transition hover:text-pink-500"
+        >Features</a
+      >
+      <a
+        href="#"
+        class="font-medium text-gray-800 transition hover:text-pink-500"
+        >Marketplace</a
+      >
+      <a
+        href="#"
+        class="font-medium text-gray-800 transition hover:text-pink-500"
+        >Company</a
+      >
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    const button = document.getElementById('menuButton');
+    const menu = document.getElementById('mobileMenu');
+
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add(
+            'backdrop-blur-md',
+            'bg-white/30',
+            'border-b',
+            'border-white/20',
+          );
+        } else {
+          navbar.classList.remove(
+            'backdrop-blur-md',
+            'bg-white/30',
+            'border-b',
+            'border-white/20',
+          );
+        }
+      });
+    }
+
+    if (button && menu) {
+      button.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+      });
+    }
+  });
+</script>
